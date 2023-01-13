@@ -4,6 +4,7 @@ import {Route, Routes, Navigate } from 'react-router-dom';
 
 import Home from '../components/Home';
 import ShowSalas from '../components/ShowSalas';
+import FormSala from '../components/FormSala';
 //import Protected from '../Protected';
 
 
@@ -14,6 +15,7 @@ const RouterConfig = () =>{
         <Routes>
        <Route path='/home' element={<Home/>}/>
        <Route path='/showSalas' element={<ShowSalas/>}/>
+       <Route path='/formSala' element={<FormSala/>}/>
       {/* <Route path='/login' element={<Login/>}/>
       
       <Route path='/formSoldes' element={<FormSoldes/>}/>
