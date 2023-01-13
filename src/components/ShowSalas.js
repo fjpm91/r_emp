@@ -2,14 +2,20 @@ import React, {useEffect, useState} from 'react'
 import FullCalendar from '@fullcalendar/react' // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
 import esLocale from '@fullcalendar/core/locales/es';
+import FormReunion from './FormReunion';
 
 import { Modal, Button } from 'react-bootstrap';
 
 const ShowSalas = () => {
     const [show, setShow] = useState(false);
+    const [salaid, setSalaid] = useState('')
     const handleClose = () => setShow(false);
     const handleShow = () => {
         setShow(true);
+    }
+
+    const handleSala = (e) => {
+      setSalaid(e.target.value)
     }
 
 
@@ -20,7 +26,7 @@ const ShowSalas = () => {
     </div>
     <div className="row mt-2">
         <div className="col">
-        <select name="select_salas" id="select_salas" className="form-control">
+        <select name="select_sala" id="select_sala" onChange={handleSala} className="form-control">
             <option value="">Seleccione una sala</option>
             <option value="1">Sala 1</option>
             <option value="2">Sala 2</option>
@@ -35,12 +41,12 @@ const ShowSalas = () => {
         <button className="btn btn-success" onClick={()=>handleShow()}>Programar reunion</button>
     </div>
 
-    <Modal show={show} onHide={handleClose} className="modal-sm">
+    <Modal show={show} onHide={handleClose} className="modal-md">
         <Modal.Header closeButton>
-          <Modal.Title>Nuevo Evento</Modal.Title>
+          <Modal.Title>Nueva Reunión</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            <h3>Nuevo Evento para SALA</h3>
+            <FormReunion salaid={salaid}/>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

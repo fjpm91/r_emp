@@ -1,6 +1,7 @@
 {
   "name": "r_emp",
   "version": "0.1.0",
+  "homepage": "http://intranet.local",
   "private": true,
   "dependencies": {
     "@fullcalendar/core": "^6.0.2",
