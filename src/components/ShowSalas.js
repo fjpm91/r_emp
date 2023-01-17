@@ -1,68 +1,91 @@
-import React, {useEffect, useState} from 'react'
-import FullCalendar from '@fullcalendar/react' // must go before plugins
-import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
-import esLocale from '@fullcalendar/core/locales/es';
-import FormReunion from './FormReunion';
 
-import { Modal, Button } from 'react-bootstrap';
+import React, { useEffect, useState, useRef } from 'react'; //imr
+import { Link } from 'react-router-dom'
+import DataTable from 'react-data-table-component'
+import { useNavigate, useParams } from 'react-router-dom';
+import axios from "../api/AxiosApi";
 
 const ShowSalas = () => {
-    const [show, setShow] = useState(false);
-    const [salaid, setSalaid] = useState('')
-    const handleClose = () => setShow(false);
-    const handleShow = () => {
-        setShow(true);
+    const data = []
+
+    const [salas, setSalas] = useState([])
+      useEffect (()=> {
+          getSalas()
+      },[])
+  
+      const getSalas = async () =>{
+        const response = await axios.get(`/salas`)
+        const data = response.data
+        //axios serializa por defecto, fetch no
+        setSalas(data)
     }
-
-    const handleSala = (e) => {
-      setSalaid(e.target.value)
-    }
-
-
+  
+    const deleteSala = async (id) =>{
+      const response = await axios.delete(`/sala/${id}`)
+      getSalas()       
+  }
+  
+  
+    const columns = [
+      {
+        name:"ID",
+        selector: row => row.id
+      },
+      {
+        name:"NOMBRE",
+        selector: row => row.nombre
+      },
+      {
+        name:"CAPACIDAD",
+        selector: row => row.capacidad
+      },
+      {
+        name:"TV",
+        selector: row => (row.televisor) == 0 ? "NO" : "SÍ"
+      },
+      {
+        name:"PROYECTOR",
+        selector: row => row.proyector == 0 ? "NO" : "SÍ"
+      },
+      {
+        name:"",
+        style:{width:"100px"},
+        selector: row => 
+        <button onClick={()=>{
+          if(window.confirm(`¿Desea eliminar la sala ${row.id}`)){
+          deleteSala(row.id)
+        }}} 
+        className='btn btn-danger'>Eliminar</button>
+      }
+      // {
+      //   name:"",
+      //   style:{width:"100px"},
+      //   selector: row => 
+      //   <Link to={`/showExtintor/${row.id}`} className='btn btn-info text-white'>Show</Link>    
+      // },
+  
+    ]
+  
   return (
+    <>
     <div className="container">
-    <div className="row mt-2">
-    <h1>Calendario Salas</h1>
-    </div>
-    <div className="row mt-2">
-        <div className="col">
-        <select name="select_sala" id="select_sala" onChange={handleSala} className="form-control">
-            <option value="">Seleccione una sala</option>
-            <option value="1">Sala 1</option>
-            <option value="2">Sala 2</option>
-            <option value="3">Sala 3</option>
-            <option value="4">Sala 4</option>
-            <option value="5">Sala 5</option>
-            <option value="6">Sala 6</option>
-        </select>
+      <div className="mt-3">
+        {/* <PDFDownloadLink document={<PrintSoldes prop={{id:1}}/>} filename={`Soldes1`}>
+        {({loading}) => (loading ? <button>Loading Document...</button> : <button>Download</button> )}
+        </PDFDownloadLink> */}
+      </div>
+        <div className='mt-3'>
+            <Link to="/formSala" className='btn btn-success btn-lg mt-2 mb-2 text-white'>Nueva</Link>
+        </div>
+        <div className="row mt-2">
+          <DataTable
+          columns={columns}
+          data={salas}
+          pagination
+            />
         </div>
     </div>
-    <div className="row mt-2">
-        <button className="btn btn-success" onClick={()=>handleShow()}>Programar reunion</button>
-    </div>
-
-    <Modal show={show} onHide={handleClose} className="modal-md">
-        <Modal.Header closeButton>
-          <Modal.Title>Nueva Reunión</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-            <FormReunion salaid={salaid}/>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Cerrar
-          </Button>
-        </Modal.Footer>
-      </Modal>
-
-    <div className="row mt-2">
-        <FullCalendar
-            plugins={[ dayGridPlugin ]}
-            initialView="dayGridWeek"
-            locale={esLocale}
-        />
-    </div>
-    </div>
+    </>
   )
 }
 

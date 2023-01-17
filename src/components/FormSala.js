@@ -56,7 +56,7 @@ const FormSala = () => {
             console.log(data)
             const response = await axios.post('/sala',data);
             alert(response.data.message);
-            //navigate("/showSoldes");
+            navigate("/showSalas");
         }catch(error){
             if(error.response){
                 alert(error.response.data.message);
