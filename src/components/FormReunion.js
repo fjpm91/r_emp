@@ -41,7 +41,14 @@ const FormReunion = (props) => {
             data.id_sala = props.salaid
             data.usuario = "prueba"
             const response = await axios.post('/reunion',data);
+            /*data.start = `${data.fecha} ${data.hora_inicio}`;
+            data.end = `${data.fecha} ${data.hora_fin}`;
+            data.title = data.titulo
+            props.onEventAdded(data)*/
+            props.getReuniones(props.salaid)
             alert(response.data.message);
+            
+
             //navigate("/showSoldes");
         }catch(error){
             if(error.response){
@@ -78,7 +85,7 @@ const FormReunion = (props) => {
             <input type="text" className='form-control' {...register('titulo',{
             required:true
             })}/>
-        {errors.titulo?.type === 'required' && <small className='text-danger'>El campo no puede estar vacío</small>}
+        {errors.titulo?.type === 'required' && <small className='text-danger text-uppercase'>El campo no puede estar vacío</small>}
         </div>
 
         <div className='row mt-2'>

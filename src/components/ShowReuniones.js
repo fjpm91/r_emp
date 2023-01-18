@@ -11,15 +11,16 @@ import axios from "../api/AxiosApi";
 import { Modal, Button } from 'react-bootstrap';
 
 const ShowReuniones = () => {
+    //const calendarRef = React.createRef()
+    const calendarRef = useRef()
     const [show, setShow] = useState(false);
     const [salas, setSalas] = useState([]);
-    //const [salaid, setSalaid] = useState('');
+ 
     const salaid = useRef(0)
     const reunion = useRef()
     const handleClose = () => setShow(false);
     const handleShow = () => {
         setShow(true);
-        
     }
 
     useEffect(() => {
@@ -38,7 +39,7 @@ const ShowReuniones = () => {
 
     const getSalas = async ()=>{
       const response = await axios.get(`/salas`);
-      console.log(response.data);
+      //console.log(response.data);
       setSalas(response.data)
   }
 
@@ -48,6 +49,14 @@ const ShowReuniones = () => {
         console.log(response.data);
         setReuniones(response.data)
     }
+
+    // const onEventAdded = (event) => {
+    //   //console.log(event)
+    //   //setEventonuevo(event)
+    //   const api = calendarRef.current.getApi();
+    //   api.addEvent(event);
+    // };
+
 
 
   return (
@@ -76,7 +85,10 @@ const ShowReuniones = () => {
           <Modal.Title>Nueva Reunión</Modal.Title>
         </Modal.Header> */}
         <Modal.Body>
-            <FormReunion salaid={salaid.current} reunion={reunion.current}/>
+            <FormReunion salaid={salaid.current} reunion={reunion.current} 
+            //onEventAdded={onEventAdded}
+            getReuniones={getReuniones}
+            />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
@@ -87,9 +99,10 @@ const ShowReuniones = () => {
 
     <div className="row mt-2">
         <FullCalendar
+            ref={calendarRef}
             plugins={[ dayGridPlugin, timeGridPlugin ]}
             headerToolbar={{
-              center: 'timeGridWeek,dayGridMonth'
+              center: 'timeGridDay,timeGridWeek,dayGridMonth'
             }}
             initialView="timeGridWeek"
             locale={esLocale}
