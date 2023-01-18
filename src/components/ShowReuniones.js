@@ -102,7 +102,7 @@ const ShowReuniones = () => {
             ref={calendarRef}
             plugins={[ dayGridPlugin, timeGridPlugin ]}
             headerToolbar={{
-              center: 'timeGridDay,timeGridWeek,dayGridMonth'
+              center: "timeGridDay,timeGridWeek,dayGridMonth"
             }}
             initialView="timeGridWeek"
             locale={esLocale}
