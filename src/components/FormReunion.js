@@ -2,11 +2,15 @@
 import React, { useEffect, useState, useRef } from 'react'; //imr
 import { useNavigate, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import dayjs from 'dayjs';
 import axios from "../api/AxiosApi";
 
 
 const FormReunion = (props) => {
     const [sala_id, setSala_id] = useState()
+    //const [ minimo, setMinimo] = useState();
+    const minimo = useRef()
+    const hoy = dayjs().format("YYYY-MM-DD");
     const { register, handleSubmit, setValue, formState:{errors} } = useForm({
         defaultValues:{
             titulo : "",
@@ -21,6 +25,8 @@ const FormReunion = (props) => {
         setSala_id(props.salaid)
         if (props.reunion){
             setProps()
+        }else{
+            setValue('fecha', hoy)
         }
     },[])
 
@@ -32,6 +38,16 @@ const FormReunion = (props) => {
         setValue('hora_inicio', props.reunion.extendedProps.hora_inicio)
         setValue('hora_fin', props.reunion.extendedProps.hora_fin)
 
+    }
+
+    const handleMinimo = (e) =>{
+        //console.log (e.target.value)
+        let arr = e.target.value.split(":")
+        //console.log(`${arr[0]}:${arr[1]}`)
+        let x = dayjs({hour:arr[0],minute:arr[1]}).add(10,'m')
+        console.log(x);
+        //minimo.current = dayjs(e.target.value, "HH:mm")
+        //console.log(minimo.current)
     }
 
     
@@ -106,18 +122,20 @@ const FormReunion = (props) => {
 
         <div className='row mt-2'>
             <label className="col-form-label">Hora Inicio</label>
-            <input type="time" className='form-control' {...register('hora_inicio',{
+            <input type="time" className='form-control'  {...register('hora_inicio',{
             required:true
-            })}/>
+            })} onChange={handleMinimo}/>
         {errors.hora_inicio?.type === 'required' && <small className='text-danger'>El campo no puede estar vacío</small>}
         </div>
 
         <div className='row mt-2'>
             <label className="col-form-label">Hora Fin</label>
             <input type="time" className='form-control' {...register('hora_fin',{
-            required:true
+            required:true,
+            min:minimo.current
             })}/>
         {errors.hora_fin?.type === 'required' && <small className='text-danger'>El campo no puede estar vacío</small>}
+        {errors.hora_fin?.type === 'min' && <small className='text-danger'>La hora fin no puede ser inferior a la hora inicio</small>}
         </div>
 
         <div className="row my-4">
