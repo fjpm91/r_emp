@@ -14,8 +14,14 @@ const MenuNavbar = () => {
                         <NavDropdown title="SALAS" id="basic-nav-dropdown">
                             <NavDropdown.Item className="dropdown-item" as={Link} to="/showSalas">SALAS</NavDropdown.Item>
                             <NavDropdown.Item className="dropdown-item" as={Link} to="/showReuniones">REUNIONES</NavDropdown.Item>
+                            <NavDropdown.Item className="dropdown-item" as={Link} to="/formAdmin">ADMINISTRADORES</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
+                    <Nav className="d-flex">                    
+                                
+                                <Nav.Link href="/login" className='ml-4'>LOGIN </Nav.Link>       
+                                <Nav.Link href="/showAdmin" className='ml-4'>LOGOUT </Nav.Link>                                                            
+                    </Nav>     
                 </Navbar.Collapse>
             </Container>
         </Navbar>

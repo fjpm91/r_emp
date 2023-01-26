@@ -1,5 +1,4 @@
 import { ErrorResponse } from '@remix-run/router';
-// import image from "../img/logodiminuto.png";
 import React, { useEffect, useState, useRef } from 'react'; //imr
 import { useNavigate, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
@@ -10,10 +9,11 @@ const FormSala = () => {
         width: "25px", 
         height: "25px"
     };
-    //Añadimos dayjs que es el reemplazo de momentjs
-    //const hoy = dayjs().format("YYYY-MM-DD");
     const navigate = useNavigate();
     const {id} = useParams()
+    const[sala, setSala]=useState();
+    const [television, setTelevision]=useState(false);
+    const [proyector, setProyector]=useState(false);
     //const [imagen, setImagen] = useState()
     const previewSize = {
         width:"350px"
@@ -41,9 +41,19 @@ const FormSala = () => {
     const getSalaById = async () =>{
         const response = await axios.get(`/sala/${id}`)
         console.log(response.data);
+        setValue('nombre',response.data.nombre)
+        setValue('capacidad',response.data.capacidad)
+        setValue('descripcion',response.data.descripcion)
+        setValue('ubicacion',response.data.ubicacion)
+        setTelevision(response.data.television==1?true:false)
+        //setProyector(response.data.proyector==1?true)
+        setProyector(true)
+                
         
       }
-
+    const assignValue=()=>{
+        setValue('nombre', sala.nombre)
+    };
     
     // const store = async (data) => {
     //     await console.log (data)
@@ -115,7 +125,7 @@ const FormSala = () => {
                     <label className="col-form-label">Televisor</label> 
                 </div>
                 <div className='col'>
-                <input type="checkbox" className="form-check-input" style={bigcheckbox} id="televisor" {...register('televisor',{
+                <input type="checkbox" className="form-check-input" defaultChecked={television} style={bigcheckbox} id="televisor" {...register('televisor',{
                 })}/>
                 </div>
             </div>
@@ -125,7 +135,7 @@ const FormSala = () => {
                     <label className="col-form-label">Proyector</label>
                 </div>
                 <div className="col">
-                <input type="checkbox" className="form-check-input" style={bigcheckbox} id="proyector" {...register('proyector',{
+                <input type="checkbox" className="form-check-input" defaultChecked={proyector} style={bigcheckbox} id="proyector" {...register('proyector',{
                 })}/>
                 </div>
             </div>

@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom'
 import DataTable from 'react-data-table-component'
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from "../api/AxiosApi";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit, faEye, faTrash, faTrashCan} from "@fortawesome/free-solid-svg-icons";
 const ShowSalas = () => {
     const data = []
 
@@ -46,6 +47,17 @@ const ShowSalas = () => {
       {
         name:"PROYECTOR",
         selector: row => row.proyector == 0 ? "NO" : "SÍ"
+      },
+      {
+        name:"",
+        style:{width:"100px"},
+        selector: row => 
+        <Link to={`/showSala/${row.id}`} className='btn btn-info'>< FontAwesomeIcon icon={faEye} /></Link>
+      },
+      {
+        name:"",
+        selector: row => 
+        <Link to={`/formSala/${row.id}`} className='btn btn-warning'> <FontAwesomeIcon icon={faTrashCan} /></Link>    
       },
       {
         name:"",
