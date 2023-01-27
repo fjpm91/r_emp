@@ -45,7 +45,17 @@ const ShowAdmin = () => {
         name:"SALA",
         selector: row => row.id_sala
       },
-
+      {
+        name:"",
+        style:{width:"100px"},
+        selector: row => 
+        <Link to={`/formAdmin/${row.id}`} className='btn btn-info'>< FontAwesomeIcon icon={faEye} /></Link>
+      },
+      {
+        name:"",
+        selector: row => 
+        <Link to={`/formAdmin/${row.id}`} className='btn btn-warning'> <FontAwesomeIcon icon={faEdit} /></Link>    
+      },
       {
         name:"",
         style:{width:"100px"},
@@ -57,7 +67,8 @@ const ShowAdmin = () => {
         className='btn btn-danger'><FontAwesomeIcon icon={faTrashCan} /></button>
       }
 
-    
+     
+      
   
     ]
   
@@ -67,7 +78,7 @@ const ShowAdmin = () => {
       <div className="mt-3">
       </div>
         <div className='mt-3'>
-            <Link to="/formSala" className='btn btn-success btn-lg mt-2 mb-2 text-white'>Nueva</Link>
+            <Link to="/formAdmin" className='btn btn-success btn-lg mt-2 mb-2 text-white'>Nueva</Link>
         </div>
         <div className="row mt-2">
           <DataTable

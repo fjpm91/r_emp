@@ -57,7 +57,7 @@ const ShowSalas = () => {
       {
         name:"",
         selector: row => 
-        <Link to={`/formSala/${row.id}`} className='btn btn-warning'> <FontAwesomeIcon icon={faTrashCan} /></Link>    
+        <Link to={`/formSala/${row.id}`} className='btn btn-warning'> <FontAwesomeIcon icon={faEdit} /></Link>    
       },
       {
         name:"",
@@ -67,7 +67,7 @@ const ShowSalas = () => {
           if(window.confirm(`¿Desea eliminar la sala ${row.id}`)){
           deleteSala(row.id)
         }}} 
-        className='btn btn-danger'>Eliminar</button>
+        className='btn btn-danger'><FontAwesomeIcon icon={faTrashCan} /></button>
       }
       // {
       //   name:"",
@@ -75,7 +75,7 @@ const ShowSalas = () => {
       //   selector: row => 
       //   <Link to={`/showExtintor/${row.id}`} className='btn btn-info text-white'>Show</Link>    
       // },
-  
+      
     ]
   
   return (

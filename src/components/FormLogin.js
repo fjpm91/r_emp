@@ -18,7 +18,6 @@ const FormLogin = (props) => {
     const previewSize = {
         width:"350px"
     }
-    
 
     const { register, handleSubmit, setValue, formState:{errors} } = useForm({
         defaultValues:{

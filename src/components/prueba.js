@@ -5,11 +5,11 @@ import React, {useEffect, useState, useRef} from 'react';
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
 import timeGridPlugin from '@fullcalendar/timegrid'; //another plugin
 import axios from "../api/AxiosApi";
-
+import './prueba.css';
 import { Modal, Button } from 'react-bootstrap';
 
 const logoEstilo = {width: '250px'};
-const Home = () => {
+const Prueba = () => {
   const data = []
   createToast()
   function createToast() {
@@ -51,6 +51,21 @@ const Home = () => {
   return (
     <>
    
+    <div id="hellobar-bar" className="regular closable">
+    <div className="hb-content-wrapper">
+        <div className="hb-text-wrapper">
+            <div className="hb-headline-text">
+                <p className='p-2'><span>El objetivo de esta aplicación es compartir de manera pacífica las distintas salas de reunione disponibles en EMPACAR</span></p>
+                <p className='pb-2'><span>Esperamos sea de mucha ayuda atentamente los desarrolladores</span></p>
+            </div>
+        </div>
+        
+    </div>
+    <div className="hb-close-wrapper">
+        <a href="/home" className="icon-close">✖</a>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </div>
+</div>
 <div className='card-img-top'>
   <p className='bienvenido'>Bienvenido</p>
   
@@ -77,4 +92,4 @@ const Home = () => {
   );
 };
 
-export default Home
+export default Prueba

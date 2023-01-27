@@ -22,7 +22,7 @@ const FormAdmin = () => {
         width:"350px"
     }
     
-
+    
     const { register, handleSubmit, setValue, formState:{errors} } = useForm({
         defaultValues:{
             username: "",
@@ -34,19 +34,27 @@ const FormAdmin = () => {
 
     useEffect(() => {
         if (id){
-            
+            getAdminById()
         }else{
 
         }
     }, [])
 
-    
+    const getAdminById = async () =>{
+        const response = await axios.get(`/sala_admin/${id}`)
+        console.log(response.data);
+        setValue('username',response.data.nombre)
+        setValue('nombre',response.data.capacidad)
+        setValue('correo',response.data.descripcion)
+        setValue('sala',response.data.ubicacion)               
+        
+      }
     const store = async (data) =>{
         try{
             console.log(data)
             const response = await axios.post('/sala_admin',data);
             alert(response.data.message);
-            
+            navigate("/showAdmin");
          
         }catch(error){
             if(error.response){
@@ -55,13 +63,15 @@ const FormAdmin = () => {
                 alert(error)
             }
         }
+       
+        
     }
 
     const update = async (data) =>{
         try{
             
             console.log(data)
-            const response = await axios.put('/user',data);
+            const response = await axios.put('/sala_admin',data);
             alert(response.data.message);
             
         }catch(error){

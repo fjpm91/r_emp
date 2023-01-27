@@ -9,6 +9,8 @@ import ShowReuniones from '../components/ShowReuniones';
 import FormAdmin from '../components/FormAdmin';
 import FormLogin from '../components/FormLogin';
 import ShowAdmin from '../components/ShowAdmin';
+import Prueba from '../components/prueba';
+import ViewSala from '../components/ViewSala';
 //import Protected from '../Protected';
 
 
@@ -26,6 +28,8 @@ const RouterConfig = () =>{
        <Route path='/login' element={<FormLogin/>}/>
        <Route path='/showSala/:id' element={<FormSala/>}/> 
        <Route path='/formSala/:id' element={<FormSala/>}/> 
+       <Route path='/prueba' element={<Prueba/>}/>
+       <Route path='/viewSala' element={<ViewSala/>}/>
       {
     //   <Route path='/formSoldes' element={<FormSoldes/>}/>
     //   <Route path='/formSoldes/:id' element={<FormSoldes/>}/>

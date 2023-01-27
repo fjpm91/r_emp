@@ -7,6 +7,10 @@
     opacity: calc(1);
     z-index: 0;
   }
+  html,body{
+  height: 100%;
+  width: 100%;
+}
 .bg-image{
     height: 300px;;
     background-image: url(https://fondosmil.com/fondo/36779.jpg);
@@ -15,3 +19,40 @@
     margin: 2;
     border-radius: 20px;
   }
+.card-img-top{
+    z-index: 0;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    height: 300px;
+    background-image: url(https://www.torreombu.com/blog/wp-content/uploads/2021/07/shutterstock_1028952010-1.jpg);
+}
+.imgsala{
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  height: 100%;
+  background-image: url(https://www.torreombu.com/blog/wp-content/uploads/2021/07/shutterstock_1028952010-1.jpg);
+}
+
+.bienvenido{
+  font-size: 80px;
+  color: black;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  padding: 10%;
+  
+}
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  height: 100%
+}
+
+.filas{
+  height: 100%;
+  display: inline-block;
+
+  width: 100%;
+}

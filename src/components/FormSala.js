@@ -19,7 +19,7 @@ const FormSala = () => {
         width:"350px"
     }
     
-
+    
     const { register, handleSubmit, setValue, formState:{errors} } = useForm({
         defaultValues:{
             televisor: false,
@@ -47,14 +47,10 @@ const FormSala = () => {
         setValue('ubicacion',response.data.ubicacion)
         setTelevision(response.data.television==1?true:false)
         //setProyector(response.data.proyector==1?true)
-        setProyector(true)
-                
-        
+        setProyector(response.data.proyector==1?true:false)
       }
-    const assignValue=()=>{
-        setValue('nombre', sala.nombre)
-    };
-    
+     
+
     // const store = async (data) => {
     //     await console.log (data)
     // }
@@ -125,8 +121,9 @@ const FormSala = () => {
                     <label className="col-form-label">Televisor</label> 
                 </div>
                 <div className='col'>
-                <input type="checkbox" className="form-check-input" defaultChecked={television} style={bigcheckbox} id="televisor" {...register('televisor',{
+                <input type="checkbox" className="form-check-input"  style={bigcheckbox} id="televisor" {...register('televisor',{
                 })}/>
+                
                 </div>
             </div>
 
@@ -135,7 +132,7 @@ const FormSala = () => {
                     <label className="col-form-label">Proyector</label>
                 </div>
                 <div className="col">
-                <input type="checkbox" className="form-check-input" defaultChecked={proyector} style={bigcheckbox} id="proyector" {...register('proyector',{
+                <input type="checkbox" className="form-check-input"  style={bigcheckbox} id="proyector" {...register('proyector',{
                 })}/>
                 </div>
             </div>
@@ -183,6 +180,7 @@ const FormSala = () => {
             <button type="submit" className="btn btn-success">REGISTRAR</button>
             </div>
             {/* <input className="btn btn-success" type="submit" value='ENVIAR'/> */}
+            
             </form>
         </div>
         </>
