@@ -66,8 +66,6 @@ const FormReunion = (props) => {
             props.onEventAdded(data)*/
             props.getReuniones(props.salaid)
             alert(response.data.message);
-            
-
             //navigate("/showSoldes");
         }catch(error){
             if(error.response){
@@ -79,9 +77,11 @@ const FormReunion = (props) => {
     }
 
     const update = async (data) =>{
-        try{
+        if(props.reunion.extendedProps.usuario == localStorage.getItem('username')){
+        try{   
             data.id_sala = props.salaid
-            const response = await axios.put('/reunion',data);
+            const response = await axios.put(`/reunion/${props.reunion.id}`,data);
+            props.getReuniones(props.salaid)
             alert(response.data.message);
             //navigate("/showSoldes");
         }catch(error){
@@ -90,6 +90,9 @@ const FormReunion = (props) => {
             }else{
                 alert(error)
             }
+        }
+        }else{
+            alert('Solo el responsable de la reunion puede realizar cambios')
         }
     }
 
@@ -154,7 +157,7 @@ const FormReunion = (props) => {
 
         <div className="row my-4">
             {(localStorage.getItem('username')) ? 
-            (<button type="submit" ref={refb} className="btn btn-success">{(props.reunion) ? `MODIFICAR` : "REGISTRAR"}</button>) : null
+            (<button type="submit" ref={refb} className="btn btn-success">{(props.reunion) ? 'MODIFICAR' : "REGISTRAR"}</button>) : null
             }
         </div>
         </form>
