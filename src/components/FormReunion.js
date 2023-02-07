@@ -93,6 +93,7 @@ const FormReunion = (props) => {
 
   return (
     <div className="container">
+
         <h4>{(props.reunion) ? `Editar Reunion #${props.reunion.id}` : "Nueva Reunion"}</h4>
         <form onSubmit={handleSubmit((props.reunion) ? update : store)}>
 

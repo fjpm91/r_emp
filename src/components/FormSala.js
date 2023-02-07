@@ -3,6 +3,7 @@ import React, { useEffect, useState, useRef } from 'react'; //imr
 import { useNavigate, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import axios from "../api/AxiosApi";
+import MenuNavbar from '../layouts/MenuNavbar'
 
 const FormSala = () => { 
     const bigcheckbox = {
@@ -18,7 +19,7 @@ const FormSala = () => {
     const previewSize = {
         width:"350px"
     }
-    
+    const opcion={width:"50px"}
     
     const { register, handleSubmit, setValue, formState:{errors} } = useForm({
         defaultValues:{
@@ -45,9 +46,11 @@ const FormSala = () => {
         setValue('capacidad',response.data.capacidad)
         setValue('descripcion',response.data.descripcion)
         setValue('ubicacion',response.data.ubicacion)
-        setTelevision(response.data.television==1?true:false)
+        setTelevision(response.data.televisor==1?true:false)
         //setProyector(response.data.proyector==1?true)
         setProyector(response.data.proyector==1?true:false)
+        console.log(proyector)
+        console.log(television)
       }
      
 
@@ -76,9 +79,9 @@ const FormSala = () => {
         try{
             
             console.log(data)
-            const response = await axios.put('/sala',data);
+            const response = await axios.put(`/sala/${id}`,data);
             alert(response.data.message);
-            //navigate("/showSoldes");
+            navigate("/showSalas");
         }catch(error){
             if(error.response){
                 alert(error.response.data.message);
@@ -88,13 +91,15 @@ const FormSala = () => {
         }
     }
 
-    const test = (data) =>{
+    const test =  (data) =>{
         //data.imagen = imgref.current
         console.log(data)
     }
 
     return (
         <>
+    <MenuNavbar/>
+
         <div className='container'>
             <div className='row mt-3'>
                 <center>
@@ -115,15 +120,43 @@ const FormSala = () => {
             {errors.nombre?.type === 'required' && <small className='text-danger'>El campo no puede estar vacío</small>}
                 </div>
             </div>
-    
             <div className='row mt-2 '>
                 <div className='col'>
                     <label className="col-form-label">Televisor</label> 
                 </div>
                 <div className='col'>
-                <input type="checkbox" className="form-check-input"  style={bigcheckbox} id="televisor" {...register('televisor',{
-                })}/>
-                
+                <select className='form-control' style={opcion} {...register('televisor',{
+                        required:true
+                        })}>
+                        <option value="">Seleccione una Opcion</option>
+                        <option value="1">SI</option>
+                        <option value="0">NO</option>
+                    </select>        
+                </div>
+            </div>
+            <div className='row mt-2 '>
+                <div className='col'>
+                    <label className="col-form-label">Proyector</label> 
+                </div>
+                <div className='col'>
+                <select className='form-control' style={opcion} {...register('proyector',{
+                        required:true
+                        })}>
+                        <option value="">Seleccione una Opcion</option>
+                        <option value="1">SI</option>
+                        <option value="0">NO</option>
+                    </select>        
+                </div>
+            </div>
+            
+   
+            {/* <div className='row mt-2 '>
+                <div className='col'>
+                    <label className="col-form-label">Televisor</label> 
+                </div>
+                <div className='col'>
+                <input type="checkbox" className="form-check-input" defaultChecked={{television}} style={bigcheckbox} id="televisor" {...register('televisor',{
+                })}/>               
                 </div>
             </div>
 
@@ -132,10 +165,10 @@ const FormSala = () => {
                     <label className="col-form-label">Proyector</label>
                 </div>
                 <div className="col">
-                <input type="checkbox" className="form-check-input"  style={bigcheckbox} id="proyector" {...register('proyector',{
+                <input type="checkbox" className="form-check-input" defaultChecked={false}  style={bigcheckbox} id="proyector" {...register('proyector',{
                 })}/>
                 </div>
-            </div>
+            </div> */}
 
            
 
@@ -177,7 +210,7 @@ const FormSala = () => {
 
 
             <div className="row my-4">
-            <button type="submit" className="btn btn-success">REGISTRAR</button>
+            <button type="submit" className="btn btn-success">{(id) ? `Actualizar` : "Registrar"}</button>
             </div>
             {/* <input className="btn btn-success" type="submit" value='ENVIAR'/> */}
             

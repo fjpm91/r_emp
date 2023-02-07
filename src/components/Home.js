@@ -5,6 +5,7 @@ import React, {useEffect, useState, useRef} from 'react';
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
 import timeGridPlugin from '@fullcalendar/timegrid'; //another plugin
 import axios from "../api/AxiosApi";
+import MenuNavbar from '../layouts/MenuNavbar'
 
 import { Modal, Button } from 'react-bootstrap';
 
@@ -22,17 +23,17 @@ const Home = () => {
   
     const [reunion, setReunion] = useState([])
     
-    //   useEffect (()=> {
-    //       getReunion()
-    //   },[])
+       useEffect (()=> {
+           getReunion()
+     },[])
   
 
-    //   const getReunion = async () =>{
-    //     const response = await axios.get(`/reuniones`)
-    //     const data = response.data
-    //     //axios serializa por defecto, fetch no
-    //     setReunion(data)
-    // }
+       const getReunion = async () =>{
+         const response = await axios.get(`/reuniones`)
+         const data = response.data
+         //axios serializa por defecto, fetch no
+         setReunion(data)
+     }
 
 
   const columns = [
@@ -55,6 +56,7 @@ const Home = () => {
   
   return (
     <>
+    <MenuNavbar/>
    
 <div className='card-img-top'>
   <p className='bienvenido'>Bienvenido</p>
