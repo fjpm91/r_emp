@@ -26,6 +26,7 @@ const FormLogin = (props) => {
             const response = await axios.post('/login',data);
             //alert(response.data.message);
             localStorage.setItem('username', response.data.username);
+            localStorage.setItem('sala_admin', response.data.sala_admin);
             navigate("/home");
         }catch(error){
             if(error.response){
