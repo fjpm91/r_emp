@@ -2,6 +2,7 @@
 
 import {Route, Routes, Navigate } from 'react-router-dom';
 
+
 import Home from '../components/Home';
 import ShowSalas from '../components/ShowSalas.js';
 import FormSala from '../components/FormSala';
@@ -11,6 +12,7 @@ import FormLogin from '../components/FormLogin';
 import ShowAdmin from '../components/ShowAdmin';
 import Prueba from '../components/prueba';
 import ViewSala from '../components/ViewSala';
+import MenuNavbar from '../layouts/MenuNavbar';
 //import Protected from '../Protected';
 
 
@@ -18,29 +20,19 @@ import ViewSala from '../components/ViewSala';
 
 const RouterConfig = () =>{
     return (
-        <Routes>
-       <Route path='/home' element={<Home/>}/>
-       <Route path='/showSalas' element={<ShowSalas/>}/>
-       <Route path='/formSala' element={<FormSala/>}/>
-       <Route path='/showReuniones' element={<ShowReuniones/>}/>
-       <Route path='/formAdmin' element={<FormAdmin/>}/>
-       <Route path='/showAdmin' element={<ShowAdmin/>}/>
-       <Route path='/login' element={<FormLogin/>}/>
-       <Route path='/showSala/:id' element={<FormSala/>}/> 
-       <Route path='/formSala/:id' element={<FormSala/>}/> 
-       <Route path='/prueba' element={<Prueba/>}/>
-       <Route path='/viewSala' element={<ViewSala/>}/>
-      {
-    //   <Route path='/formSoldes' element={<FormSoldes/>}/>
-    //   <Route path='/formSoldes/:id' element={<FormSoldes/>}/>
-    //   <Route path='/showSoldes' element={<ShowSoldes/>}/>
-    //   <Route path='/showProductos' element={<ShowProducts/>}/>
-    //   <Route path='/printSoldes/' element={<PrintSoldes/>}/>
-    //   <Route path='/printSoldes/:id' element={<PrintSoldes/>}/> 
-      
-}
-
-
+      <Routes>
+          <Route path='/login' element={<FormLogin/>}/>        
+          <Route path='/home' element={<Home/>}/>
+          <Route path='/showSalas' element={<ShowSalas/>}/>
+          <Route path='/formSala' element={<FormSala/>}/>
+          <Route path='/showReuniones' element={<ShowReuniones/>}/>
+          <Route path='/formAdmin' element={<FormAdmin/>}/>
+          <Route path='/showAdmin' element={<ShowAdmin/>}/>
+          <Route path='/showSala/:id' element={<FormSala/>}/> 
+          <Route path='/formSala/:id' element={<FormSala/>}/> 
+          <Route path='/viewSala' element={<ViewSala/>}/>
+          
+          {/* <Route path='/*' element={<Home/>}/> */}
       </Routes>
     );
 }

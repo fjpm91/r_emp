@@ -15,10 +15,19 @@ const ShowSalas = () => {
       },[])
   
       const getSalas = async () =>{
+        try{
         const response = await axios.get(`/salas`)
         const data = response.data
         //axios serializa por defecto, fetch no
         setSalas(data)
+        }
+        catch(error){
+          if(error.response){
+              alert(error.response.data.message);
+          }else{
+              alert(error)
+          }
+      }
     }
   
     const deleteSala = async (id) =>{

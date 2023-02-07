@@ -38,16 +38,33 @@ const ShowReuniones = () => {
     }
 
     const getSalas = async ()=>{
+      try{
       const response = await axios.get(`/salas`);
       //console.log(response.data);
       setSalas(response.data)
+      }
+      catch(error){
+        if(error.response){
+            alert(error.response.data.message);
+        }else{
+            alert(error)
+        }
+      }
   }
 
     
     const getReuniones = async (id)=>{
+      try{
         const response = await axios.get(`/reuniones/${id}`);
         console.log(response.data);
         setReuniones(response.data)
+      }catch(error){
+          if(error.response){
+            alert(error.response.data.message);
+          }else{
+              alert(error)
+          }
+        }
     }
 
     // const onEventAdded = (event) => {

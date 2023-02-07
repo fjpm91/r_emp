@@ -19,17 +19,22 @@ const Home = () => {
     setTimeout(() => {
     notif.remove()
   }, 10000)}
-    const [reunion, setReunion] = useState([])
-      useEffect (()=> {
-          getReunion()
-      },[])
   
-      const getReunion = async () =>{
-        const response = await axios.get(`/reuniones`)
-        const data = response.data
-        //axios serializa por defecto, fetch no
-        setReunion(data)
-    }
+    const [reunion, setReunion] = useState([])
+    
+    //   useEffect (()=> {
+    //       getReunion()
+    //   },[])
+  
+
+    //   const getReunion = async () =>{
+    //     const response = await axios.get(`/reuniones`)
+    //     const data = response.data
+    //     //axios serializa por defecto, fetch no
+    //     setReunion(data)
+    // }
+
+
   const columns = [
     {
       name:"NOMBRE",
