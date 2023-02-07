@@ -35,7 +35,15 @@ const MenuNavbar = () => {
                     <Nav className="me-auto">
                         <NavDropdown title="SALAS" id="basic-nav-dropdown">
                             <NavDropdown.Item className="dropdown-item" as={Link} to="/showReuniones">REUNIONES</NavDropdown.Item>
+                            {(
+                                (localStorage.getItem('sala_admin')) ?   
+                            <NavDropdown.Item className="dropdown-item" as={Link} to="/showSalas">SALAS</NavDropdown.Item>:<></>
+                            )}
                             
+                            {(
+                                (localStorage.getItem('sala_admin')) ?   
+                                <NavDropdown.Item className="dropdown-item" as={Link} to="/showAdmin">ADMINISTRADORES</NavDropdown.Item> :<></>
+                            )}
                         </NavDropdown>
                     </Nav>
                     <Nav className="d-flex">                    
