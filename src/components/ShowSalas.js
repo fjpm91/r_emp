@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState, useRef } from 'react'; //imr
 import { Link } from 'react-router-dom'
+import MenuNavbar from '../layouts/MenuNavbar'
 import DataTable from 'react-data-table-component'
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from "../api/AxiosApi";
@@ -59,12 +60,6 @@ const ShowSalas = () => {
       },
       {
         name:"",
-        style:{width:"100px"},
-        selector: row => 
-        <Link to={`/showSala/${row.id}`} className='btn btn-info'>< FontAwesomeIcon icon={faEye} /></Link>
-      },
-      {
-        name:"",
         selector: row => 
         <Link to={`/formSala/${row.id}`} className='btn btn-warning'> <FontAwesomeIcon icon={faEdit} /></Link>    
       },
@@ -89,6 +84,7 @@ const ShowSalas = () => {
   
   return (
     <>
+    <MenuNavbar/>
     <div className="container">
       <div className="mt-3">
         {/* <PDFDownloadLink document={<PrintSoldes prop={{id:1}}/>} filename={`Soldes1`}>

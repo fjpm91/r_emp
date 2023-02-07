@@ -1,6 +1,6 @@
 
 import React, {useEffect, useState, useRef} from 'react';
-
+import MenuNavbar from '../layouts/MenuNavbar'
 import FullCalendar from '@fullcalendar/react'; // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
 import timeGridPlugin from '@fullcalendar/timegrid'; //another plugin
@@ -77,6 +77,7 @@ const ShowReuniones = () => {
 
 
   return (
+    <> <MenuNavbar/>
     <div className="container">
     <div className="row mt-2">
     <h1>Calendario Salas</h1>
@@ -135,7 +136,7 @@ const ShowReuniones = () => {
             eventClick={(info)=>{reunion.current = info.event; handleShow()}}
         />
     </div>
-    </div>
+    </div></>
   )
 }
 

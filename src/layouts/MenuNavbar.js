@@ -2,7 +2,9 @@ import React, {useState} from 'react'
 import { useEffect } from 'react';
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
-
+import empicon from '../img/logoempacar.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit, faEye, faTrash, faTrashCan, faUser} from "@fortawesome/free-solid-svg-icons";
 const MenuNavbar = () => {
     const [usershow, setUsershow] = useState('Invitado');
     const navigate = useNavigate();
@@ -10,18 +12,19 @@ const MenuNavbar = () => {
         setUsershow(localStorage.getItem('username'))
         console.log(localStorage.getItem('username'))
     },[])
-
+    const logoEstilo = {width: '100px'};
     const logout = () =>{
         localStorage.clear();
         setUsershow('Invitado');
         navigate("/login");
     }
-
+    
 
     return (
         <Navbar bg="dark" expand="md" variant="dark">
             <Container>
-                <Navbar.Brand href="/prueba">EMPACAR</Navbar.Brand>
+                {/* <Navbar.Brand href="/home">EMPACAR</Navbar.Brand> */}
+                <Navbar.Brand href="/prueba"><img src={empicon} style={logoEstilo}/></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
@@ -32,8 +35,7 @@ const MenuNavbar = () => {
                         </NavDropdown>
                     </Nav>
                     <Nav className="d-flex">                    
-                                <h4 className="text-white mx-2">{usershow}</h4>
-                                <Nav.Link href="/login" className='ml-4'>LOGIN </Nav.Link>       
+                                <Nav.Link className='text-white mx-2'><FontAwesomeIcon icon={faUser} /> {usershow} </Nav.Link>                                                            
                                 <Nav.Link onClick={logout} className='ml-4'>LOGOUT </Nav.Link>                                                            
                     </Nav>     
                 </Navbar.Collapse>
