@@ -24,7 +24,9 @@
     display: flex;
     align-items: center;
     align-content: center;
-    height: 300px;
+    justify-items: center;
+    justify-content: center;
+    height: 150px;
     background-image: url(https://www.torreombu.com/blog/wp-content/uploads/2021/07/shutterstock_1028952010-1.jpg);
 }
 .imgsala{
@@ -40,7 +42,7 @@
   font-size: 80px;
   color: black;
   font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  padding: 10%;
+  
   
 }
 .wrapper {
