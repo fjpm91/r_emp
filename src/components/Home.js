@@ -2,11 +2,8 @@ import logoreunion from '../img/reunion.png'
 import './styles.css';
 import DataTable from 'react-data-table-component'
 import React, {useEffect, useState, useRef} from 'react';
-import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
-import timeGridPlugin from '@fullcalendar/timegrid'; //another plugin
 import axios from "../api/AxiosApi";
-import MenuNavbar from '../layouts/MenuNavbar'
-
+import { tableCustomStyles } from './estilo';
 import { Modal, Button } from 'react-bootstrap';
 
 const logoEstilo = {width: '250px'};
@@ -26,8 +23,22 @@ const Home = () => {
        useEffect (()=> {
            getReunion()
      },[])
-  
-
+     
+    //  const getSalas = async () =>{
+    //   try{
+    //   const response = await axios.get(`/salas`)
+    //   const data = response.data
+    //   //axios serializa por defecto, fetch no
+    //   setSalas(data)
+    //   }
+    //   catch(error){
+    //     if(error.response){
+    //         alert(error.response.data.message);
+    //     }else{
+    //         alert(error)
+    //     }
+    //   }
+    //   }
        const getReunion = async () =>{
          const response = await axios.get(`/reuniones`)
          const data = response.data
@@ -40,6 +51,10 @@ const Home = () => {
     {
       name:"NOMBRE",
       selector: row => row.titulo
+    },
+    {
+      name:"SALA",
+      selector: row => row.id_sala
     },
     {
       name:"FECHA",
@@ -71,6 +86,7 @@ const Home = () => {
       <div>
       <div className="row mt-2">
           <DataTable
+          customStyles={tableCustomStyles}
           columns={columns}
           data={reunion}
           pagination

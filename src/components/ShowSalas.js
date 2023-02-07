@@ -91,9 +91,14 @@ const ShowSalas = () => {
         {({loading}) => (loading ? <button>Loading Document...</button> : <button>Download</button> )}
         </PDFDownloadLink> */}
       </div>
-        <div className='mt-3'>
-            <Link to="/formSala" className='btn btn-success btn-lg mt-2 mb-2 text-white'>Nueva</Link>
+        <div className='col2'>
+          <label className='titulo'><strong>SALAS</strong></label>
+          <div className='mt-3'>
+            <Link to="/formSala" className='btn btn-secondary btn-lg mt-2 mb-2 text-white'>Nueva</Link>
         </div>
+        </div>
+
+        
         <div className="row mt-2">
           <DataTable
           columns={columns}

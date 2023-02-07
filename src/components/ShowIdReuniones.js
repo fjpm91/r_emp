@@ -1,4 +1,3 @@
-
 import React, {useEffect, useState, useRef} from 'react';
 import MenuNavbar from '../layouts/MenuNavbar'
 import FullCalendar from '@fullcalendar/react'; // must go before plugins
@@ -7,11 +6,12 @@ import timeGridPlugin from '@fullcalendar/timegrid'; //another plugin
 import esLocale from '@fullcalendar/core/locales/es';
 import FormReunion from './FormReunion';
 import axios from "../api/AxiosApi";
+import {  useParams } from 'react-router-dom';
 
-import { Modal, Button } from 'react-bootstrap';
 
-const ShowReuniones = () => {
+const ShowIdReuniones = () => {
     //const calendarRef = React.createRef()
+    const {id} = useParams()
     const calendarRef = useRef()
     const [show, setShow] = useState(false);
     const [salas, setSalas] = useState([]);
@@ -24,11 +24,12 @@ const ShowReuniones = () => {
     }
 
     useEffect(() => {
-      getSalas()
+    getReuniones()
     }, [])
     
 
     const [reuniones, setReuniones] = useState()
+
     const handleSala = (e) => {
       //setSalaid(e.target.value)
       salaid.current = e.target.value
@@ -36,24 +37,11 @@ const ShowReuniones = () => {
       getReuniones(salaid.current)
     }
 
-    const getSalas = async ()=>{
-      try{
-      const response = await axios.get(`/salas`);
-      //console.log(response.data);
-      setSalas(response.data)
-      }
-      catch(error){
-        if(error.response){
-            alert(error.response.data.message);
-        }else{
-            alert(error)
-        }
-      }
-  }
 
     
-    const getReuniones = async (id)=>{
+    const getReuniones = async ()=>{
       try{
+
         const response = await axios.get(`/reuniones/${id}`);
         console.log(response.data);
         setReuniones(response.data)
@@ -78,44 +66,9 @@ const ShowReuniones = () => {
   return (
     <>
     <div className="container">
-    <div className="row mt-2">
-    <h1>Calendario Salas</h1>
-    </div>
-    <div className="row mt-2">
-        <div className="col">
-        <select name="select_sala" id="select_sala" onChange={handleSala} className="form-control">
-            <option value="">Seleccione una sala</option>
-            {
-              salas.map((sala) => (
-              <option key={sala.id} value={sala.id}>{sala.nombre}</option>
-              ))
-            }
-        </select>
-        </div>
-    </div>
-    <div className="row mt-2">
-      { ((localStorage.getItem('username')) ? 
-        <button className="btn btn-success" onClick={()=>{reunion.current = null;handleShow()}}>Programar reunion</button> : null
-        )}
-        
-    </div>
 
-    <Modal show={show} onHide={handleClose} className="modal-md">
-        {/* <Modal.Header closeButton>
-          <Modal.Title>Nueva Reunión</Modal.Title>
-        </Modal.Header> */}
-        <Modal.Body>
-            <FormReunion salaid={salaid.current} reunion={reunion.current} 
-            //onEventAdded={onEventAdded}
-            getReuniones={getReuniones}
-            />
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Cerrar
-          </Button>
-        </Modal.Footer>
-      </Modal>
+
+
 
     <div className="row mt-2">
         <FullCalendar
@@ -142,4 +95,4 @@ const ShowReuniones = () => {
   )
 }
 
-export default ShowReuniones
+export default ShowIdReuniones
