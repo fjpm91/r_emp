@@ -23,8 +23,8 @@ const FormLogin = (props) => {
       const login = async (data) =>{
         try{            
             const response = await axios.post('/login',data);
-            alert(response.data.message);
-            localStorage.setItem('username', response.data.username.toUpperCase());
+            //alert(response.data.message);
+            localStorage.setItem('username', response.data.username);
             navigate("/home");
         }catch(error){
             if(error.response){

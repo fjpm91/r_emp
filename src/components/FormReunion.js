@@ -10,6 +10,7 @@ const FormReunion = (props) => {
     const [sala_id, setSala_id] = useState()
     //const [ minimo, setMinimo] = useState();
     const minimo = useRef()
+    const refb = React.createRef();
     const hoy = dayjs().format("YYYY-MM-DD");
     const { register, handleSubmit, setValue, formState:{errors} } = useForm({
         defaultValues:{
@@ -27,6 +28,7 @@ const FormReunion = (props) => {
             setProps()
         }else{
             setValue('fecha', hoy)
+            setValue('usuario', localStorage.getItem('username'))
         }
     },[])
 
@@ -37,6 +39,7 @@ const FormReunion = (props) => {
         setValue('fecha', props.reunion.extendedProps.fecha)
         setValue('hora_inicio', props.reunion.extendedProps.hora_inicio)
         setValue('hora_fin', props.reunion.extendedProps.hora_fin)
+        setValue('usuario', props.reunion.extendedProps.usuario)
 
     }
 
@@ -55,7 +58,7 @@ const FormReunion = (props) => {
     const store = async (data) =>{
         try{
             data.id_sala = props.salaid
-            data.usuario = "prueba"
+            data.usuario = localStorage.getItem('username');
             const response = await axios.post('/reunion',data);
             /*data.start = `${data.fecha} ${data.hora_inicio}`;
             data.end = `${data.fecha} ${data.hora_fin}`;
@@ -138,8 +141,20 @@ const FormReunion = (props) => {
         {errors.hora_fin?.type === 'min' && <small className='text-danger'>La hora fin no puede ser inferior a la hora inicio</small>}
         </div>
 
+        <div className='row mt-2'>
+            <label className="col-form-label">Responsable</label>
+            <input type="text" className='form-control text-uppercase' readOnly {...register('usuario',{
+            required:true
+            })}/>
+        </div>
+
+
+
+
         <div className="row my-4">
-            <button type="submit" className="btn btn-success">{(props.reunion) ? `MODIFICAR` : "REGISTRAR"}</button>
+            {(localStorage.getItem('username')=='Invitado') ? null :
+            (<button type="submit" ref={refb} className="btn btn-success">{(props.reunion) ? `MODIFICAR` : "REGISTRAR"}</button>)
+            }
         </div>
         </form>
     </div>
