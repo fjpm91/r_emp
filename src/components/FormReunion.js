@@ -153,8 +153,8 @@ const FormReunion = (props) => {
 
 
         <div className="row my-4">
-            {(localStorage.getItem('username')=='Invitado') ? null :
-            (<button type="submit" ref={refb} className="btn btn-success">{(props.reunion) ? `MODIFICAR` : "REGISTRAR"}</button>)
+            {(localStorage.getItem('username')) ? 
+            (<button type="submit" ref={refb} className="btn btn-success">{(props.reunion) ? `MODIFICAR` : "REGISTRAR"}</button>) : null
             }
         </div>
         </form>

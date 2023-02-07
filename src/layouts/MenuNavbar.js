@@ -6,16 +6,21 @@ import empicon from '../img/logoempacar.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faEye, faTrash, faTrashCan, faUser} from "@fortawesome/free-solid-svg-icons";
 const MenuNavbar = () => {
-    const [usershow, setUsershow] = useState('Invitado');
+    const [usershow, setUsershow] = useState('INVITADO');
     const navigate = useNavigate();
     useEffect (()=> {
-        setUsershow(localStorage.getItem('username'))
+        setUsershow((localStorage.getItem('username')) ? localStorage.getItem('username') : 'INVITADO')
         console.log(localStorage.getItem('username'))
     },[])
+    useEffect (()=> {
+        setUsershow((localStorage.getItem('username')) ? localStorage.getItem('username') : 'INVITADO')
+        
+    },[localStorage.getItem('username')])
+    
     const logoEstilo = {width: '100px'};
     const logout = () =>{
         localStorage.clear();
-        setUsershow('Invitado');
+        setUsershow('INVITADO');
         navigate("/login");
     }
     
@@ -24,7 +29,7 @@ const MenuNavbar = () => {
         <Navbar bg="dark" expand="md" variant="dark">
             <Container>
                 {/* <Navbar.Brand href="/home">EMPACAR</Navbar.Brand> */}
-                <Navbar.Brand href="/prueba"><img src={empicon} style={logoEstilo}/></Navbar.Brand>
+                <Navbar.Brand href="/home"><img src={empicon} style={logoEstilo}/></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
@@ -35,8 +40,12 @@ const MenuNavbar = () => {
                         </NavDropdown>
                     </Nav>
                     <Nav className="d-flex">                    
-                                <Nav.Link className='text-white mx-2'><FontAwesomeIcon icon={faUser} /> {usershow} </Nav.Link>                                                            
-                                <Nav.Link onClick={logout} className='ml-4'>LOGOUT </Nav.Link>                                                            
+                                <Nav.Link className='text-white mx-2'><FontAwesomeIcon icon={faUser} /> {usershow} </Nav.Link>
+                                                                                                               
+                                {(
+                                (localStorage.getItem('username')) ?   
+                                <Nav.Link onClick={logout} className='ml-4'>LOGOUT </Nav.Link> : <Nav.Link href="/login" className='ml-4'>LOGIN </Nav.Link>                                                            
+                            )}
                     </Nav>     
                 </Navbar.Collapse>
             </Container>

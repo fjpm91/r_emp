@@ -77,7 +77,7 @@ const ShowReuniones = () => {
 
 
   return (
-    <> <MenuNavbar/>
+    <>
     <div className="container">
     <div className="row mt-2">
     <h1>Calendario Salas</h1>
@@ -95,7 +95,10 @@ const ShowReuniones = () => {
         </div>
     </div>
     <div className="row mt-2">
-        <button className="btn btn-success" onClick={()=>{reunion.current = null;handleShow()}}>Programar reunion</button>
+      { ((localStorage.getItem('username')) ? 
+        <button className="btn btn-success" onClick={()=>{reunion.current = null;handleShow()}}>Programar reunion</button> : null
+        )}
+        
     </div>
 
     <Modal show={show} onHide={handleClose} className="modal-md">

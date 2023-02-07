@@ -56,7 +56,7 @@ const Home = () => {
   
   return (
     <>
-    <MenuNavbar/>
+    
    
 <div className='card-img-top'>
   <p className='bienvenido'>Bienvenido</p>

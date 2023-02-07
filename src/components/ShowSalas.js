@@ -84,7 +84,7 @@ const ShowSalas = () => {
   
   return (
     <>
-    <MenuNavbar/>
+    
     <div className="container">
       <div className="mt-3">
         {/* <PDFDownloadLink document={<PrintSoldes prop={{id:1}}/>} filename={`Soldes1`}>

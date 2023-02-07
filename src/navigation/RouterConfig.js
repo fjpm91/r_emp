@@ -13,6 +13,7 @@ import ShowAdmin from '../components/ShowAdmin';
 import Prueba from '../components/prueba';
 import ViewSala from '../components/ViewSala';
 import MenuNavbar from '../layouts/MenuNavbar';
+
 //import Protected from '../Protected';
 
 

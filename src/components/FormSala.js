@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from 'react'; //imr
 import { useNavigate, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import axios from "../api/AxiosApi";
-import MenuNavbar from '../layouts/MenuNavbar'
+import MenuNavbar from '../layouts/MenuNavbar';
 
 const FormSala = () => { 
     const bigcheckbox = {
@@ -98,7 +98,6 @@ const FormSala = () => {
 
     return (
         <>
-    <MenuNavbar/>
 
         <div className='container'>
             <div className='row mt-3'>
