@@ -21,7 +21,9 @@ const Home = () => {
     const [reunion, setReunion] = useState([])
     
        useEffect (()=> {
-           getReunion()
+        if(localStorage.getItem('username')){
+          getReunion()
+        }
      },[])
      
     //  const getSalas = async () =>{
@@ -40,17 +42,18 @@ const Home = () => {
     //   }
     //   }
        const getReunion = async () =>{
-         const response = await axios.get(`/reuniones`)
+         const response = await axios.get(`/reunionesx/${localStorage.getItem('username')}`)
          const data = response.data
          //axios serializa por defecto, fetch no
          setReunion(data)
+         console.log(data)
      }
 
 
   const columns = [
     {
       name:"NOMBRE",
-      selector: row => row.titulo
+      selector: row => row.title
     },
     {
       name:"SALA",
@@ -77,14 +80,17 @@ const Home = () => {
   <p className='bienvenido'>Bienvenido</p>
   
 </div>
+<h3 className='titulo2'> Reuniones</h3>
+      <div className='divisor'></div>
   <div className='container'>
   <div id="toasts"></div>
-    <div className="card-group p-4">
+    <div className="card-group">
 
     <div className='container'>
-      <h3> Reuniones</h3>
+      
+
+      <div className="row">
       <div>
-      <div className="row mt-2">
           <DataTable
           customStyles={tableCustomStyles}
           columns={columns}

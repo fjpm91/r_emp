@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import MenuNavbar from '../layouts/MenuNavbar'
 import DataTable from 'react-data-table-component'
 import { useNavigate, useParams } from 'react-router-dom';
+import { tableCustomStyles } from './estilo';
 import axios from "../api/AxiosApi";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faEye, faTrash, faTrashCan} from "@fortawesome/free-solid-svg-icons";
@@ -94,13 +95,14 @@ const ShowSalas = () => {
         <div className='col2'>
           <label className='titulo'><strong>SALAS</strong></label>
           <div className='mt-3'>
-            <Link to="/formSala" className='btn btn-secondary btn-lg mt-2 mb-2 text-white'>Nueva</Link>
+            <Link to="/formSala" className='btn btn-success btn-lg mt-2 mb-2 text-white'>Nueva</Link>
         </div>
         </div>
 
         
         <div className="row mt-2">
           <DataTable
+          customStyles={tableCustomStyles}
           columns={columns}
           data={salas}
           pagination

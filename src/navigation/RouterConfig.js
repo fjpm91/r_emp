@@ -28,6 +28,8 @@ const RouterConfig = () =>{
           <Route path='/formSala' element={<FormSala/>}/>
           <Route path='/showReuniones' element={<ShowReuniones/>}/>
           <Route path='/formAdmin' element={<FormAdmin/>}/>
+          <Route path='/formAdmin/:id' element={<FormAdmin/>}/>
+
           <Route path='/showAdmin' element={<ShowAdmin/>}/>
           <Route path='/showSala/:id' element={<FormSala/>}/> 
           <Route path='/formSala/:id' element={<FormSala/>}/> 

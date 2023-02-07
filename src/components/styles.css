@@ -52,6 +52,11 @@
   
   
 }
+.reg{
+  margin: 2;
+  margin-left: 3rem ;
+  justify-self: end;
+}
 .wrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -85,4 +90,16 @@
 }
 .boton:hover{
   color: cornsilk;
+}
+.divisor{
+    height: 0px;
+    border-style: solid;
+    border-color: gainsboro;
+    border-top: 0.5px;
+    border-width: 1px;
+    margin-bottom: 1rem;
+  }
+.titulo2{
+  padding: 1rem;
+  padding-left: 10rem;
 }

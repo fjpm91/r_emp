@@ -1,7 +1,7 @@
 const tableCustomStyles = {
     headCells: {
       style: {
-        fontSize: '15px',
+        fontSize: '14px',
         color:  '#272D2C',
         fontWeight: 'Lucida Sans',
         paddingLeft: '10px',
