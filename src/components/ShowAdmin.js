@@ -47,12 +47,6 @@ const ShowAdmin = () => {
       },
       {
         name:"",
-        style:{width:"100px"},
-        selector: row => 
-        <Link to={`/formAdmin/${row.id}`} className='btn btn-info'>< FontAwesomeIcon icon={faEye} /></Link>
-      },
-      {
-        name:"",
         selector: row => 
         <Link to={`/formAdmin/${row.id}`} className='btn btn-warning'> <FontAwesomeIcon icon={faEdit} /></Link>    
       },

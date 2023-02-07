@@ -12,7 +12,6 @@ const FormSala = () => {
     };
     const navigate = useNavigate();
     const {id} = useParams()
-    const[sala, setSala]=useState();
     const [television, setTelevision]=useState(false);
     const [proyector, setProyector]=useState(false);
     //const [imagen, setImagen] = useState()
@@ -46,6 +45,8 @@ const FormSala = () => {
         setValue('capacidad',response.data.capacidad)
         setValue('descripcion',response.data.descripcion)
         setValue('ubicacion',response.data.ubicacion)
+        setValue('televisor',response.data.televisor)
+        setValue('proyector',response.data.proyector)
         setTelevision(response.data.televisor==1?true:false)
         //setProyector(response.data.proyector==1?true)
         setProyector(response.data.proyector==1?true:false)

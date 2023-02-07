@@ -10,9 +10,9 @@ import ShowReuniones from '../components/ShowReuniones';
 import FormAdmin from '../components/FormAdmin';
 import FormLogin from '../components/FormLogin';
 import ShowAdmin from '../components/ShowAdmin';
-import Prueba from '../components/prueba';
 import ViewSala from '../components/ViewSala';
 import MenuNavbar from '../layouts/MenuNavbar';
+import ShowIdReuniones from '../components/ShowIdReuniones';
 
 //import Protected from '../Protected';
 
@@ -28,10 +28,13 @@ const RouterConfig = () =>{
           <Route path='/formSala' element={<FormSala/>}/>
           <Route path='/showReuniones' element={<ShowReuniones/>}/>
           <Route path='/formAdmin' element={<FormAdmin/>}/>
+          <Route path='/formAdmin/:id' element={<FormAdmin/>}/>
+
           <Route path='/showAdmin' element={<ShowAdmin/>}/>
           <Route path='/showSala/:id' element={<FormSala/>}/> 
           <Route path='/formSala/:id' element={<FormSala/>}/> 
           <Route path='/viewSala' element={<ViewSala/>}/>
+          <Route path='/showReuniones/:id' element={<ShowIdReuniones/>}/>
           
           {/* <Route path='/*' element={<Home/>}/> */}
       </Routes>

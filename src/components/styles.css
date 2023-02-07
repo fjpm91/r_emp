@@ -19,15 +19,22 @@
     margin: 2;
     border-radius: 20px;
   }
+  .titulo{
+    font-size: 30px;
+  }
 .card-img-top{
     z-index: 0;
     display: flex;
     align-items: center;
-    align-content: center;
-    justify-items: center;
     justify-content: center;
-    height: 150px;
     background-image: url(https://www.torreombu.com/blog/wp-content/uploads/2021/07/shutterstock_1028952010-1.jpg);
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    padding: 0.5rem;
+    object-fit:cover;
+    object-position: bottom;
+    height: 150px;
 }
 .imgsala{
   z-index: 0;
@@ -40,10 +47,15 @@
 
 .bienvenido{
   font-size: 80px;
-  color: black;
+  color: #272D2C;
   font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   
   
+}
+.reg{
+  margin: 2;
+  margin-left: 3rem ;
+  justify-self: end;
 }
 .wrapper {
   display: grid;
@@ -51,10 +63,43 @@
   grid-gap: 10px;
   height: 100%
 }
+.col2 {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  align-items: center;
+  grid-gap: 10px;
+  height: 100%
+}
 
 .filas{
   height: 100%;
   display: inline-block;
-
+  
   width: 100%;
+}
+.mt-3{
+  justify-self: end;
+}
+.boton{
+  background-color: #272D2C;
+  color: white;
+  width: 100px;
+  height: 50px;
+  text-align: center;
+  justify-items: center;
+}
+.boton:hover{
+  color: cornsilk;
+}
+.divisor{
+    height: 0px;
+    border-style: solid;
+    border-color: gainsboro;
+    border-top: 0.5px;
+    border-width: 1px;
+    margin-bottom: 1rem;
+  }
+.titulo2{
+  padding: 1rem;
+  padding-left: 10rem;
 }

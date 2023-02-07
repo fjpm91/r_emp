@@ -2,11 +2,8 @@ import logoreunion from '../img/reunion.png'
 import './styles.css';
 import DataTable from 'react-data-table-component'
 import React, {useEffect, useState, useRef} from 'react';
-import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
-import timeGridPlugin from '@fullcalendar/timegrid'; //another plugin
 import axios from "../api/AxiosApi";
-import MenuNavbar from '../layouts/MenuNavbar'
-
+import { tableCustomStyles } from './estilo';
 import { Modal, Button } from 'react-bootstrap';
 
 const logoEstilo = {width: '250px'};
@@ -24,22 +21,43 @@ const Home = () => {
     const [reunion, setReunion] = useState([])
     
        useEffect (()=> {
-           getReunion()
+        if(localStorage.getItem('username')){
+          getReunion()
+        }
      },[])
-  
-
+     
+    //  const getSalas = async () =>{
+    //   try{
+    //   const response = await axios.get(`/salas`)
+    //   const data = response.data
+    //   //axios serializa por defecto, fetch no
+    //   setSalas(data)
+    //   }
+    //   catch(error){
+    //     if(error.response){
+    //         alert(error.response.data.message);
+    //     }else{
+    //         alert(error)
+    //     }
+    //   }
+    //   }
        const getReunion = async () =>{
-         const response = await axios.get(`/reuniones`)
+         const response = await axios.get(`/reunionesx/${localStorage.getItem('username')}`)
          const data = response.data
          //axios serializa por defecto, fetch no
          setReunion(data)
+         console.log(data)
      }
 
 
   const columns = [
     {
       name:"NOMBRE",
-      selector: row => row.titulo
+      selector: row => row.title
+    },
+    {
+      name:"SALA",
+      selector: row => row.id_sala
     },
     {
       name:"FECHA",
@@ -62,15 +80,19 @@ const Home = () => {
   <p className='bienvenido'>Bienvenido</p>
   
 </div>
+<h3 className='titulo2'> Reuniones</h3>
+      <div className='divisor'></div>
   <div className='container'>
   <div id="toasts"></div>
-    <div className="card-group p-4">
+    <div className="card-group">
 
     <div className='container'>
-      <h3> Reuniones</h3>
+      
+
+      <div className="row">
       <div>
-      <div className="row mt-2">
           <DataTable
+          customStyles={tableCustomStyles}
           columns={columns}
           data={reunion}
           pagination

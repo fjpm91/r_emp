@@ -3,7 +3,6 @@ import React, { useEffect, useState, useRef } from 'react'; //imr
 import { useNavigate, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import axios from "../api/AxiosApi";
-import './vgrid.css';
 const ViewSala = () => {
     const bigcheckbox = {
         width: "25px", 
