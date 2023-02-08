@@ -95,7 +95,25 @@ const FormReunion = (props) => {
             alert('Solo el responsable de la reunion puede realizar cambios')
         }
     }
-
+    const borrar = async (data) =>{
+        if(props.reunion.extendedProps.usuario == localStorage.getItem('username')){
+        try{   
+            data.id_sala = props.salaid
+            const response = await axios.delete(`/reunion/${props.reunion.id}`,data);
+            props.getReuniones(props.salaid)
+            alert(response.data.message);
+            //navigate("/showSoldes");
+        }catch(error){
+            if(error.response){
+                alert(error.response.data.message);
+            }else{
+                alert(error)
+            }
+        }
+        }else{
+            alert('Solo el responsable de la reunion puede realizar cambios')
+        }
+    }
 
   return (
     <div className="container">
@@ -156,9 +174,16 @@ const FormReunion = (props) => {
 
 
         <div className="row my-4">
+            <div className='col2'>
+
+            
             {(localStorage.getItem('username')) ? 
             (<button type="submit" ref={refb} className="btn btn-success">{(props.reunion) ? 'MODIFICAR' : "REGISTRAR"}</button>) : null
             }
+            {(localStorage.getItem('username')) ? 
+            (<button type="submit" onClick={borrar} ref={refb} className="btn btn-secondary">{(props.reunion) ? 'ELIMINAR' : "CERRAR"}</button>) : null
+            }
+            </div>
         </div>
         </form>
     </div>
