@@ -29,19 +29,19 @@ const MenuNavbar = () => {
         <Navbar bg="dark" expand="md" variant="dark">
             <Container>
                 {/* <Navbar.Brand href="/home">EMPACAR</Navbar.Brand> */}
-                <Navbar.Brand href="/home"><img src={empicon} style={logoEstilo}/></Navbar.Brand>
+                <Navbar.Brand as={Link} to="/home"><img src={empicon} style={logoEstilo}/></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         <NavDropdown title="SALAS" id="basic-nav-dropdown">
                             <NavDropdown.Item className="dropdown-item" as={Link} to="/showReuniones">REUNIONES</NavDropdown.Item>
                             {(
-                                (localStorage.getItem('sala_admin')) ?   
+                                (localStorage.getItem('sala_admin') == 1) ?   
                             <NavDropdown.Item className="dropdown-item" as={Link} to="/showSalas">SALAS</NavDropdown.Item>:<></>
                             )}
                             
                             {(
-                                (localStorage.getItem('sala_admin')) ?   
+                                (localStorage.getItem('sala_admin') == 1) ?   
                                 <NavDropdown.Item className="dropdown-item" as={Link} to="/showAdmin">ADMINISTRADORES</NavDropdown.Item> :<></>
                             )}
                         </NavDropdown>
@@ -51,7 +51,7 @@ const MenuNavbar = () => {
                                                                                                                
                                 {(
                                 (localStorage.getItem('username')) ?   
-                                <Nav.Link onClick={logout} className='ml-4'>LOGOUT </Nav.Link> : <Nav.Link href="/login" className='ml-4'>LOGIN </Nav.Link>                                                            
+                                <Nav.Link onClick={logout} className='ml-4'>LOGOUT </Nav.Link> : <Nav.Link as={Link} to="/login" className='ml-4'>LOGIN </Nav.Link>                                                            
                             )}
                     </Nav>     
                 </Navbar.Collapse>

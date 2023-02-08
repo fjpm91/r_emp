@@ -22,8 +22,8 @@ import ShowIdReuniones from '../components/ShowIdReuniones';
 const RouterConfig = () =>{
     return (
       <Routes>
-          <Route path='/login' element={<FormLogin/>}/>        
           <Route path='/home' element={<Home/>}/>
+          <Route path='/login' element={<FormLogin/>}/>        
           <Route path='/showSalas' element={<ShowSalas/>}/>
           <Route path='/formSala' element={<FormSala/>}/>
           <Route path='/showReuniones' element={<ShowReuniones/>}/>
