@@ -36,12 +36,12 @@ const MenuNavbar = () => {
                         <NavDropdown title="SALAS" id="basic-nav-dropdown">
                             <NavDropdown.Item className="dropdown-item" as={Link} to="/showReuniones">REUNIONES</NavDropdown.Item>
                             {(
-                                (localStorage.getItem('sala_admin')) ?   
+                                (localStorage.getItem('sala_admin') == 1) ?   
                             <NavDropdown.Item className="dropdown-item" as={Link} to="/showSalas">SALAS</NavDropdown.Item>:<></>
                             )}
                             
                             {(
-                                (localStorage.getItem('sala_admin')) ?   
+                                (localStorage.getItem('sala_admin') == 1) ?   
                                 <NavDropdown.Item className="dropdown-item" as={Link} to="/showAdmin">ADMINISTRADORES</NavDropdown.Item> :<></>
                             )}
                         </NavDropdown>
