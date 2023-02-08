@@ -29,7 +29,7 @@ const MenuNavbar = () => {
         <Navbar bg="dark" expand="md" variant="dark">
             <Container>
                 {/* <Navbar.Brand href="/home">EMPACAR</Navbar.Brand> */}
-                <Navbar.Brand href="/home"><img src={empicon} style={logoEstilo}/></Navbar.Brand>
+                <Navbar.Brand as={Link} to="/home"><img src={empicon} style={logoEstilo}/></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
@@ -51,7 +51,7 @@ const MenuNavbar = () => {
                                                                                                                
                                 {(
                                 (localStorage.getItem('username')) ?   
-                                <Nav.Link onClick={logout} className='ml-4'>LOGOUT </Nav.Link> : <Nav.Link href="/login" className='ml-4'>LOGIN </Nav.Link>                                                            
+                                <Nav.Link onClick={logout} className='ml-4'>LOGOUT </Nav.Link> : <Nav.Link as={Link} to="/login" className='ml-4'>LOGIN </Nav.Link>                                                            
                             )}
                     </Nav>     
                 </Navbar.Collapse>

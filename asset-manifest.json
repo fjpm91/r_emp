@@ -1,13 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.756af292.css",
-    "main.js": "/static/js/main.f97714b1.js",
+    "main.css": "/static/css/main.ce398c44.css",
+    "main.js": "/static/js/main.82716ac9.js",
+    "static/media/reunion.png": "/static/media/reunion.4ff917a6bda34e3d0684.png",
+    "static/media/logoempacar.png": "/static/media/logoempacar.491b0489515111b94162.png",
+    "static/media/fondoazul.jpg": "/static/media/fondoazul.36413bc26ab200824c99.jpg",
     "index.html": "/index.html",
-    "main.756af292.css.map": "/static/css/main.756af292.css.map",
-    "main.f97714b1.js.map": "/static/js/main.f97714b1.js.map"
+    "main.ce398c44.css.map": "/static/css/main.ce398c44.css.map",
+    "main.82716ac9.js.map": "/static/js/main.82716ac9.js.map"
   },
   "entrypoints": [
-    "static/css/main.756af292.css",
-    "static/js/main.f97714b1.js"
+    "static/css/main.ce398c44.css",
+    "static/js/main.82716ac9.js"
   ]
 }
