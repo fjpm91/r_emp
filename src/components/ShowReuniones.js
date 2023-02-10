@@ -10,7 +10,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import axios from "../api/AxiosApi";
 
 import { Modal, Button } from 'react-bootstrap';
-import ViewReuniones from './ShowReunion';
+
 
 const ShowReuniones = () => {
     //const calendarRef = React.createRef()
@@ -37,10 +37,12 @@ const ShowReuniones = () => {
       console.log(salaid.current)
       getReuniones(salaid.current)
       //navigate(`/viewReuniones/${salaid.current}`);
-      document.querySelector('.calendario').style.display="none";
-      document.querySelector('.reu').style.display="block";
 
-      
+
+
+      //document.querySelector('.calendario').style.display="none";
+      //document.querySelector('.reu').style.display="block";     
+      document.getElementById('rowSelect').setAttribute("hidden",true)
     }
 
     const getSalas = async ()=>{
@@ -87,9 +89,10 @@ const ShowReuniones = () => {
     <div className="">
     <div className="container">
     <div className="row mt-2">
-    <h1>Calendario Salas</h1>
+    
     </div>
-    <div className="row mt-2">
+    <h1>Calendario Salas</h1>
+    <div className="row mt-2" id="rowSelect">
         <div className="col">
         <select name="select_sala" id="select_sala" onChange={handleSala} className="form-control">
             <option value="">Seleccione una sala</option>
@@ -101,11 +104,10 @@ const ShowReuniones = () => {
         </select>
         </div>
     </div>
-    <div className="row mt-2">
+    <div className="row mt-2" id="rowButton">
       { ((localStorage.getItem('username')) ? 
         <button className="btn btn-success" onClick={()=>{reunion.current = null;handleShow()}}>Programar reunion</button> : null
         )}
-        
     </div>
     </div>
 
@@ -149,9 +151,9 @@ const ShowReuniones = () => {
             eventClick={(info)=>{reunion.current = info.event; handleShow()}}
         />
     </div></div></div>
-    <div className="reu" style={{display: "none"}}>
+    {/* <div className="reu" style={{display: "none"}}>
     <ViewReuniones id={salaid.current}></ViewReuniones>
-    </div>
+    </div> */}
     </div>
     </>
   )

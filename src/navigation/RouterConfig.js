@@ -13,7 +13,7 @@ import ShowAdmin from '../components/ShowAdmin';
 import ViewSala from '../components/ViewSala';
 import MenuNavbar from '../layouts/MenuNavbar';
 import ShowIdReuniones from '../components/ShowIdReuniones';
-import ViewReuniones from '../components/ShowReunion';
+import ShowReunionesTv from '../components/ShowReunionesTv';
 
 //import Protected from '../Protected';
 
@@ -36,7 +36,7 @@ const RouterConfig = () =>{
           <Route path='/formSala/:id' element={<FormSala/>}/> 
           <Route path='/viewSala' element={<ViewSala/>}/>
           <Route path='/showReuniones/:id' element={<ShowIdReuniones/>}/>
-          <Route path='/viewReuniones' element={<ViewReuniones/>}/>
+          <Route path='/showReunionesTv' element={<ShowReunionesTv/>}/>
           {/* <Route path='/*' element={<Home/>}/> */}
       </Routes>
     );
