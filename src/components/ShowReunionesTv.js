@@ -105,7 +105,7 @@ const ShowReunionesTv=()=>{
                     <div className="row">
                     {
                         reuniones.filter(reunion => (reunion.fecha == hoy)).map((reunion)=>{
-                            return <ReunionBox key={reunion.id} reunion={reunion} color={"#148D8D"}></ReunionBox>
+                            return <ReunionBox key={reunion.id} reunion={reunion} color={"#1fa52d"}></ReunionBox>
                         })
                     }
                     </div>
@@ -118,7 +118,7 @@ const ShowReunionesTv=()=>{
                     <div className="row">
                     {
                             reuniones.filter(reunion => (reunion.fecha == manana)).map((reunion)=>{
-                                return <ReunionBox key={reunion.id} reunion={reunion} color={"#148D8D"}></ReunionBox>   
+                                return <ReunionBox key={reunion.id} reunion={reunion} color={"#085641"}></ReunionBox>   
                             })
                     }
                     </div>
@@ -130,7 +130,7 @@ const ShowReunionesTv=()=>{
                     <div className="row">
                     {
                         reuniones.filter(reunion => (reunion.fecha == pmanana)).map((reunion)=>{
-                            return <ReunionBox key={reunion.id} reunion={reunion} color={"#148D8D"}></ReunionBox>
+                            return <ReunionBox key={reunion.id} reunion={reunion} color={"#032239"}></ReunionBox>
                         })
                     }
                     </div>

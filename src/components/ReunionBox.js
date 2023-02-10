@@ -16,7 +16,7 @@ const ReunionBox = ({reunion, color}) => {
 
     return(
         <>
-            <div style={{backgroundColor: {color}}} className="reunion">
+            <div style={{backgroundColor: color}} className="reunion my-1">
                     <div style={letra}>{reunion.title}</div>
                     {/* <div>{reunion.fecha}</div> */}
                     <div className="col">
