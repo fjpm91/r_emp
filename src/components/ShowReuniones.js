@@ -6,16 +6,18 @@ import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
 import timeGridPlugin from '@fullcalendar/timegrid'; //another plugin
 import esLocale from '@fullcalendar/core/locales/es';
 import FormReunion from './FormReunion';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from "../api/AxiosApi";
 
 import { Modal, Button } from 'react-bootstrap';
+import ViewReuniones from './ShowReunion';
 
 const ShowReuniones = () => {
     //const calendarRef = React.createRef()
     const calendarRef = useRef()
     const [show, setShow] = useState(false);
     const [salas, setSalas] = useState([]);
- 
+    const navigate = useNavigate();
     const salaid = useRef(0)
     const reunion = useRef()
     const handleClose = () => setShow(false);
@@ -34,6 +36,11 @@ const ShowReuniones = () => {
       salaid.current = e.target.value
       console.log(salaid.current)
       getReuniones(salaid.current)
+      //navigate(`/viewReuniones/${salaid.current}`);
+      document.querySelector('.calendario').style.display="none";
+      document.querySelector('.reu').style.display="block";
+
+      
     }
 
     const getSalas = async ()=>{
@@ -77,6 +84,7 @@ const ShowReuniones = () => {
 
   return (
     <>
+    <div className="">
     <div className="container">
     <div className="row mt-2">
     <h1>Calendario Salas</h1>
@@ -99,6 +107,7 @@ const ShowReuniones = () => {
         )}
         
     </div>
+    </div>
 
     <Modal show={show} onHide={handleClose} className="modal-md">
         {/* <Modal.Header closeButton>
@@ -117,6 +126,8 @@ const ShowReuniones = () => {
         </Modal.Footer>
       </Modal>
 
+        <div className='calendario'>
+          <div className='container'>
     <div className="row mt-2">
         <FullCalendar
             ref={calendarRef}
@@ -137,8 +148,12 @@ const ShowReuniones = () => {
             displayEventEnd="true"
             eventClick={(info)=>{reunion.current = info.event; handleShow()}}
         />
+    </div></div></div>
+    <div className="reu" style={{display: "none"}}>
+    <ViewReuniones id={salaid.current}></ViewReuniones>
     </div>
-    </div></>
+    </div>
+    </>
   )
 }
 

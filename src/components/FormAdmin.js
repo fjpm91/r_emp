@@ -21,6 +21,7 @@ const FormAdmin = () => {
     }
     const previewSize = {
         width:"350px"
+        
     }
     
     
