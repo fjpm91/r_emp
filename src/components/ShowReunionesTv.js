@@ -16,9 +16,13 @@ const ShowReunionesTv=()=>{
         getSalas()
     }, [])
 
-    // useEffect(()=>{
-    //     getReuniones()
-    // }, [salas])
+     useEffect(()=>{
+        //Actualizacion cada 5 minutos 5x60x1000
+        const interval = setInterval(() => {
+            getReuniones(sala_id.current) 
+          },300000);
+        return () => clearInterval(interval)
+     }, [sala_id])
 
     const hoy = dayjs().format("YYYY-MM-DD");
     const manana=dayjs().add(1, 'day').format("YYYY-MM-DD")
@@ -65,17 +69,15 @@ const ShowReunionesTv=()=>{
           }
       }
 
-    const handleSala = (e) => {
+    const updateReuniones = (e) => {
+        document.getElementById('rowSelect').setAttribute("hidden",true)
         sala_id.current = e.target.value
-        
         let sel = document.getElementById('select_sala')
         sala_name.current = sel.options[sel.selectedIndex].text
-
-        getReuniones(sala_id.current)   
-        document.getElementById('rowSelect').setAttribute("hidden",true)
+        getReuniones(sala_id.current) 
       }
 
-    
+    //
 
     return(
         <>
@@ -83,7 +85,7 @@ const ShowReunionesTv=()=>{
             <h1>Calendario Salas</h1>
             <div className="row mt-2" >
                 <div className="col">
-                <select name="select_sala" id="select_sala" onChange={handleSala} className="form-control">
+                <select name="select_sala" id="select_sala" onChange={updateReuniones} className="form-control">
                     <option value="">Seleccione una sala</option>
                     {
                     salas.map((sala) => (
