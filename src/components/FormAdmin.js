@@ -137,14 +137,6 @@ const FormAdmin = () => {
                 ))}
             </select>
 
-           {/* } <select name="select_sala" id="select_sala" onChange={handleSala} className="form-control">
-            <option value="">Seleccione una sala</option>
-            {
-              salas.map((sala) => (
-              <option key={sala.id} value={sala.id}>{sala.nombre}</option>
-              ))
-            }
-        </select> */}
         {errors.capacidad?.type === 'required' && <small className='text-danger'>El campo no puede estar vacío</small>}
             </div>
     </div>     

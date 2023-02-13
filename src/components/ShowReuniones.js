@@ -14,11 +14,11 @@ import { Modal, Button } from 'react-bootstrap';
 
 const ShowReuniones = () => {
     //const calendarRef = React.createRef()
+    const salaid = useRef(0)
     const calendarRef = useRef()
     const [show, setShow] = useState(false);
     const [salas, setSalas] = useState([]);
     const navigate = useNavigate();
-    const salaid = useRef(0)
     const reunion = useRef()
     const handleClose = () => setShow(false);
     const handleShow = () => {

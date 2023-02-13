@@ -14,9 +14,6 @@ const ShowReunionesTv=()=>{
     //const {id} = useParams()
     useEffect(()=>{
         getSalas()
-        const intervalId = setInterval(() => {
-            console.log(`El texto parpadeando es: 2`);
-          });
     }, [])
 
     // useEffect(()=>{

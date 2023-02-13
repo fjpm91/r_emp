@@ -21,10 +21,14 @@ const FormReunion = (props) => {
             hora_fin : ""
         }
     });
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
 
     useEffect(()=>{
+        document.querySelector('.bot').style.display="none";
         setSala_id(props.salaid)
         if (props.reunion){
+            document.querySelector('.bot').style.display="block";
             setProps()
         }else{
             setValue('fecha', hoy)
@@ -175,14 +179,14 @@ const FormReunion = (props) => {
 
         <div className="row my-4">
             <div className='col2'>
-
+            {(localStorage.getItem('username')) ? 
+            (<button type="submit" onClick={borrar} ref={refb} className="bot btn btn-secondary">{(props.reunion) ? 'ELIMINAR' : "CERRAR"}</button>) : null
+            }
             
             {(localStorage.getItem('username')) ? 
             (<button type="submit" ref={refb} className="btn btn-success">{(props.reunion) ? 'MODIFICAR' : "REGISTRAR"}</button>) : null
             }
-            {(localStorage.getItem('username')) ? 
-            (<button type="submit" onClick={borrar} ref={refb} className="btn btn-secondary">{(props.reunion) ? 'ELIMINAR' : "CERRAR"}</button>) : null
-            }
+            
             </div>
         </div>
         </form>
