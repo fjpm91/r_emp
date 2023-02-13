@@ -42,7 +42,7 @@ const ShowReuniones = () => {
 
       //document.querySelector('.calendario').style.display="none";
       //document.querySelector('.reu').style.display="block";     
-      document.getElementById('rowSelect').setAttribute("hidden",true)
+   
     }
 
     const getSalas = async ()=>{

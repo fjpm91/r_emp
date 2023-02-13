@@ -9,9 +9,14 @@ const ShowReunionesTv=()=>{
     const [salas, setSalas] = useState([]);
     const sala_id = useRef(0)
     const sala_name = useRef('')
+    // const opcion={width:"50px"}
+    
     //const {id} = useParams()
     useEffect(()=>{
         getSalas()
+        const intervalId = setInterval(() => {
+            console.log(`El texto parpadeando es: 2`);
+          });
     }, [])
 
     // useEffect(()=>{
@@ -92,42 +97,37 @@ const ShowReunionesTv=()=>{
                 </div>
             </div>
             </div>
-            <div className="container">
+
+            <div className="container" id="cont2">
             <center><h1>{sala_name.current}</h1></center>
+
             </div>
 
-            
-            <div className='row' style={{color: "white", backgroundColor: "#585F62", fontSize: "60px", height:"80px", textAlign: "center"}}>
-                <div className='col'>
-                    <div className="row">
-                    <center>{dayjs().format("DD-MM-YYYY")}</center>
-                    </div>
-                    <div className="row">
+            <div className="col3" style={{color: "white", backgroundColor: "#585F62", fontSize: "60px", height:"80px"}}>
+            <center>{dayjs().format("DD-MM-YYYY")}</center>
+            <center>{dayjs().add(1, 'day').format("DD-MM-YYYY")}</center>
+            <center>{dayjs().add(2, 'day').format("DD-MM-YYYY")}</center>
+            </div>
+            <div className='' style={{color: "white", fontSize: "60px", height:"80px", textAlign: "center"}}>
+                <div className='col3'>
+                    <div className="">
                     {
                         reuniones.filter(reunion => (reunion.fecha == hoy)).map((reunion)=>{
-                            return <ReunionBox key={reunion.id} reunion={reunion} color={"#1fa52d"}></ReunionBox>
+                            return <ReunionBox key={reunion.id} reunion={reunion} color={"#0FCD34"}></ReunionBox>
                         })
                     }
                     </div>
-                </div>
 
-                <div className='col'>
-                    <div className="row">
-                    <center>{dayjs().add(1, 'day').format("DD-MM-YYYY")}</center>
-                    </div>
-                    <div className="row">
+                    
+                    <div className="">
                     {
                             reuniones.filter(reunion => (reunion.fecha == manana)).map((reunion)=>{
-                                return <ReunionBox key={reunion.id} reunion={reunion} color={"#085641"}></ReunionBox>   
+                                return <ReunionBox key={reunion.id} reunion={reunion} color={"#1F566E"}></ReunionBox>   
                             })
                     }
                     </div>
-                </div>
-                <div className='col'>
-                    <div className="row">
-                    <center>{dayjs().add(2, 'day').format("DD-MM-YYYY")}</center>
-                    </div>
-                    <div className="row">
+                    
+                    <div className="">
                     {
                         reuniones.filter(reunion => (reunion.fecha == pmanana)).map((reunion)=>{
                             return <ReunionBox key={reunion.id} reunion={reunion} color={"#032239"}></ReunionBox>
