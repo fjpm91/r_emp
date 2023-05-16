@@ -14,7 +14,6 @@ import ViewSala from '../components/ViewSala';
 import MenuNavbar from '../layouts/MenuNavbar';
 import ShowIdReuniones from '../components/ShowIdReuniones';
 import ShowReunionesTv from '../components/ShowReunionesTv';
-
 //import Protected from '../Protected';
 
 
